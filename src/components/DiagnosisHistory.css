@@ -1,0 +1,117 @@
+/*
+ * The panel is a size container, so the layout inside responds to the
+ * panel's own width (not the window's) via @container queries below.
+ */
+.diagnosis-history {
+  container-type: inline-size;
+}
+
+/* Blood pressure box: chart on the left, latest-reading summary on the right */
+.bp-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(130px, 27%, 208px);
+  gap: clamp(16px, 2vw, 32px);
+  margin-top: var(--content-gap);
+  padding: clamp(12px, 1vw, 16px);
+  border-radius: var(--radius-inner);
+  background: var(--color-chart-panel);
+}
+
+.bp-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: clamp(8px, 1vw, 16px);
+}
+
+.bp-panel__title {
+  font-size: var(--font-size-md);
+  font-weight: 700;
+}
+
+.bp-panel__range {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: var(--font-size-sm);
+  white-space: nowrap;
+}
+
+.bp-panel__legend {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bp-panel__divider {
+  margin: clamp(10px, 1vw, 16px) 0;
+  border: 0;
+  border-top: 1px solid var(--color-divider);
+}
+
+.bp-summary__label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+}
+
+.bp-summary__dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--color-surface);
+}
+
+.bp-summary__dot--systolic {
+  background: var(--color-systolic);
+}
+
+.bp-summary__dot--diastolic {
+  background: var(--color-diastolic);
+}
+
+.bp-summary__value {
+  margin: 4px 0 6px;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+}
+
+/* Three vital cards in one row, directly below the chart panel */
+.diagnosis-history__vitals {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(10px, 1.25vw, 20px);
+  margin-top: clamp(10px, 1.25vw, 20px);
+}
+
+.diagnosis-history__empty {
+  margin-top: 16px;
+  color: var(--color-text-muted);
+}
+
+/* Narrow panel: summary moves under the chart, side by side */
+@container (max-width: 520px) {
+  .bp-panel {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .bp-panel__legend {
+    flex-direction: row;
+    gap: 24px;
+  }
+
+  .bp-panel__divider {
+    display: none;
+  }
+}
+
+/* Very narrow panel: vital cards stack */
+@container (max-width: 400px) {
+  .diagnosis-history__vitals {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

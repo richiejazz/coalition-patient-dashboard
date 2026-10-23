@@ -1,0 +1,13 @@
+/* Arrow stays beside the first line if the text wraps in a narrow card */
+.level-indicator {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: var(--font-size-sm);
+  line-height: 19px;
+}
+
+.level-indicator svg {
+  flex-shrink: 0;
+  margin-top: 3.5px;
+}

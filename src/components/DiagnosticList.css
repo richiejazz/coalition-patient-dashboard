@@ -1,0 +1,61 @@
+.diagnostic-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrolls vertically when there are many rows, horizontally on narrow screens */
+.diagnostic-list__scroll {
+  margin-top: var(--content-gap);
+  max-height: 260px;
+  overflow: auto;
+}
+
+/* Column split measured from the XD design: a narrow Status column */
+.diagnostic-list__table {
+  width: 100%;
+  min-width: 440px;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: var(--font-size-sm);
+  text-align: left;
+}
+
+.diagnostic-list__table th:nth-child(1) {
+  width: 30%;
+}
+
+.diagnostic-list__table th:nth-child(2) {
+  width: 50%;
+}
+
+.diagnostic-list__table th:nth-child(3) {
+  width: 20%;
+}
+
+/* Rounded light-gray header row */
+.diagnostic-list__table th {
+  position: sticky;
+  top: 0;
+  padding: clamp(10px, 0.9vw, 15px) 16px;
+  background: var(--color-row);
+  font-weight: 700;
+}
+
+.diagnostic-list__table th:first-child {
+  border-radius: 24px 0 0 24px;
+}
+
+.diagnostic-list__table th:last-child {
+  border-radius: 0 24px 24px 0;
+}
+
+.diagnostic-list__table td {
+  padding: clamp(10px, 0.9vw, 15px) 16px;
+  border-bottom: 1px solid var(--color-bg);
+}
+
+.diagnostic-list__empty {
+  margin-top: 16px;
+  color: var(--color-text-muted);
+}

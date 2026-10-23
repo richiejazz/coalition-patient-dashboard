@@ -1,0 +1,61 @@
+/*
+ * Design tokens for the Tech.Care Patients dashboard.
+ * Every color, radius, and size used by the components is defined here, so
+ * matching the Adobe XD reference is a matter of tuning values in one place.
+ *
+ * Sizes written as clamp(min, vw, max) scale with the window: they reach the
+ * full design value at a 1600px-wide viewport and shrink proportionally on
+ * smaller laptop screens, so the layout keeps the same compact proportions.
+ */
+
+:root {
+  /* Colors */
+  --color-text: #072635;            /* dark navy — headings and body text */
+  --color-text-muted: #707070;      /* secondary text (e.g. "General Practitioner") */
+  --color-bg: #f6f7f8;              /* light gray page background */
+  --color-surface: #ffffff;         /* white panels */
+  --color-accent: #01f0d0;          /* mint — active nav, primary button */
+  --color-accent-soft: #d8fcf7;     /* pale mint — selected patient row */
+  --color-row: #f6f7f8;             /* table header, icon circles, active lab row */
+  --color-divider: #cbc8d4;
+
+  --color-chart-panel: #f4f0fe;     /* pastel purple — blood pressure box */
+  --color-card-respiratory: #e0f3fa;/* pastel blue */
+  --color-card-temperature: #ffe6e9;/* pastel pink */
+  --color-card-heart: #ffe6f1;      /* pastel pink (cooler) */
+
+  --color-systolic: #e66fd2;        /* chart points + legend dot */
+  --color-diastolic: #8c6fe6;       /* chart points + legend dot */
+  --color-systolic-line: #c26eb4;   /* chart line (darker, per XD palette) */
+  --color-diastolic-line: #7e6cab;  /* chart line (darker, per XD palette) */
+
+  --color-scroll-thumb: #072635;    /* dark scrollbar thumb in lists */
+  --color-scroll-track: #e3e4e6;
+
+  /* Typography */
+  --font-family: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-size-xs: 12px;
+  --font-size-sm: clamp(12px, 0.875vw, 14px);
+  --font-size-md: clamp(15px, 1.125vw, 18px);
+  --font-size-lg: clamp(17px, 1.375vw, 22px);    /* systolic/diastolic values */
+  --font-size-xl: clamp(18px, 1.5vw, 24px);      /* panel titles */
+  --font-size-xxl: clamp(20px, 1.875vw, 30px);   /* vital card values */
+
+  /* Shape */
+  --radius-panel: 16px;
+  --radius-inner: 12px;
+  --radius-pill: 70px;
+
+  /* Layout */
+  --page-gutter: 18px;
+  --column-gap: clamp(16px, 2vw, 32px);
+  --panel-padding: clamp(14px, 1.25vw, 20px);
+  --header-height: clamp(56px, 4.5vw, 72px);
+
+  /* Component sizes */
+  --avatar-size: clamp(36px, 3vw, 48px);
+  --photo-size: clamp(120px, 12.5vw, 200px);
+  --vital-icon-size: clamp(56px, 6vw, 96px);
+  --chart-height: clamp(160px, 14vw, 224px);
+  --content-gap: clamp(16px, 2.5vw, 40px);       /* panel title → content */
+}

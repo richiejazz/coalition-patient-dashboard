@@ -1,0 +1,74 @@
+.patient-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: clamp(16px, 2vw, 32px);
+  padding-bottom: clamp(16px, 2vw, 32px);
+}
+
+.patient-profile__photo {
+  width: var(--photo-size);
+  height: var(--photo-size);
+}
+
+.patient-profile__name {
+  margin-top: clamp(10px, 1.25vw, 20px);
+  font-size: var(--font-size-xl);
+  font-weight: 800;
+  text-align: center;
+}
+
+.patient-profile__fields {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.5vw, 24px);
+  margin: clamp(16px, 2vw, 32px) 0 clamp(20px, 2.5vw, 40px);
+}
+
+.patient-profile__field {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1vw, 16px);
+}
+
+.patient-profile__icon {
+  display: grid;
+  place-items: center;
+  width: clamp(32px, 2.6vw, 42px);
+  height: clamp(32px, 2.6vw, 42px);
+  border-radius: 50%;
+  background: var(--color-row);
+  flex-shrink: 0;
+}
+
+.patient-profile__icon svg {
+  width: 48%;
+  height: 48%;
+}
+
+.patient-profile__field > div {
+  min-width: 0;
+}
+
+.patient-profile__label {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+.patient-profile__value {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.patient-profile__button {
+  width: 220px;
+  max-width: 100%;
+  padding: clamp(9px, 0.7vw, 11px) 24px;
+  border-radius: 41px;
+  background: var(--color-accent);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+}

@@ -1,0 +1,46 @@
+.vital-card {
+  padding: clamp(12px, 1vw, 16px);
+  border-radius: var(--radius-inner);
+  min-width: 0;
+}
+
+.vital-card--respiratory {
+  background: var(--color-card-respiratory);
+}
+
+.vital-card--temperature {
+  background: var(--color-card-temperature);
+}
+
+.vital-card--heart {
+  background: var(--color-card-heart);
+}
+
+.vital-card__icon {
+  display: grid;
+  place-items: center;
+  width: var(--vital-icon-size);
+  height: var(--vital-icon-size);
+  border-radius: 50%;
+  background: var(--color-surface);
+}
+
+/* Icon scales with its circle */
+.vital-card__icon svg {
+  width: 62%;
+  height: 62%;
+}
+
+/* XD character style: Manrope Medium 16px */
+.vital-card__title {
+  margin-top: clamp(8px, 1vw, 16px);
+  font-size: clamp(14px, 1vw, 16px);
+  font-weight: 500;
+}
+
+.vital-card__value {
+  margin-bottom: clamp(6px, 0.75vw, 12px);
+  font-size: var(--font-size-xxl);
+  font-weight: 800;
+  line-height: 1.35;
+}

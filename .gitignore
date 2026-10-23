@@ -1,0 +1,29 @@
+# Dependencies and build output
+node_modules/
+dist/
+
+# Environment files hold the API credentials — never commit them.
+# Only the placeholder template is tracked.
+.env
+.env.*
+!.env.example
+
+# Assessment deliverable archive (kept locally, not part of the repository)
+*.zip
+
+# Design reference screen recordings (local only)
+design/
+
+# Vercel local project link
+.vercel/
+
+# OS and editor metadata
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs and temporary files
+*.log
+npm-debug.log*
+*.tmp

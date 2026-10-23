@@ -1,0 +1,15 @@
+.avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Initials scale with the avatar via container units */
+.avatar--fallback {
+  display: grid;
+  place-items: center;
+  container-type: size;
+  background: var(--color-row);
+  font-weight: 700;
+  font-size: 38cqh;
+}

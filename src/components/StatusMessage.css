@@ -1,0 +1,9 @@
+.status-message {
+  margin-top: var(--column-gap);
+  text-align: center;
+}
+
+.status-message__detail {
+  margin-top: 8px;
+  overflow-wrap: anywhere;
+}

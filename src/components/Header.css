@@ -1,0 +1,129 @@
+/* One compact row on desktop: logo | navigation | doctor profile */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: var(--header-height);
+  padding: 0 clamp(16px, 2vw, 32px);
+  background: var(--color-surface);
+  border-radius: var(--radius-pill);
+}
+
+/* Logo (drawn approximation until the XD logo SVG is supplied) */
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Sized to the XD logo: ~44px mark, ~150px-wide wordmark at 1600px */
+.header__logo-mark {
+  width: clamp(30px, 2.75vw, 44px);
+  height: clamp(30px, 2.75vw, 44px);
+}
+
+.header__logo-text {
+  font-size: clamp(20px, 1.875vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.header__logo-dot {
+  color: var(--color-accent);
+}
+
+/* Navigation */
+.header__nav ul {
+  display: flex;
+  gap: clamp(0px, 0.5vw, 8px);
+}
+
+.header__nav-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: clamp(8px, 0.7vw, 11px) clamp(10px, 1vw, 16px);
+  border-radius: 41px;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.header__nav-link--active {
+  background: var(--color-accent);
+}
+
+/* Doctor profile */
+.header__doctor {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Circular portrait, ~44px at 1600px as in the XD header; cropped from the top
+   so the face stays centered */
+.header__doctor-avatar {
+  width: clamp(34px, 2.75vw, 44px);
+  height: clamp(34px, 2.75vw, 44px);
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  flex-shrink: 0;
+}
+
+.header__doctor-info {
+  margin-right: 4px;
+}
+
+.header__doctor-name {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+}
+
+.header__doctor-role {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.header__divider {
+  width: 1px;
+  height: var(--avatar-size);
+  margin: 0 4px;
+  background: var(--color-bg);
+}
+
+.header__icon {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+}
+
+/* Small laptops: hide the doctor's name text to keep everything on one row */
+@media (max-width: 1180px) {
+  .header__doctor-info,
+  .header__divider {
+    display: none;
+  }
+}
+
+/* Tablet and below: navigation moves to its own scrollable row */
+@media (max-width: 1023px) {
+  .header {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 12px 20px;
+    border-radius: var(--radius-panel);
+  }
+
+  .header__nav {
+    order: 3;
+    width: 100%;
+    overflow-x: auto;
+  }
+}

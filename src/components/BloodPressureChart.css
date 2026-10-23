@@ -1,0 +1,6 @@
+/* Chart.js needs a sized parent when maintainAspectRatio is false */
+.bp-chart {
+  position: relative;
+  height: var(--chart-height);
+  min-width: 0;
+}

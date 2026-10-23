@@ -1,0 +1,30 @@
+.lab-results {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.lab-results__list {
+  margin-top: clamp(8px, 1vw, 16px);
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+/* XD character style: Manrope Regular 13px */
+.lab-results__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: clamp(8px, 0.7vw, 11px) clamp(8px, 1vw, 16px);
+  font-size: clamp(12px, 0.8125vw, 13px);
+}
+
+.lab-results__item:hover {
+  background: var(--color-row);
+}
+
+.lab-results__empty {
+  margin-top: 16px;
+  color: var(--color-text-muted);
+}

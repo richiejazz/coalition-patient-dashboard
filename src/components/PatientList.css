@@ -1,0 +1,93 @@
+/*
+ * Fills the full height of the left column; the list scrolls inside it.
+ * `.panel.patient-list` outranks the shared `.panel` padding (global.css loads
+ * after this file), so rows and the selected highlight run edge to edge.
+ */
+.panel.patient-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 16px;
+  overflow: hidden;
+}
+
+.patient-list__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--panel-padding);
+  margin-bottom: clamp(8px, 1vw, 16px);
+}
+
+.patient-list__items {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  margin-right: 4px;
+}
+
+/*
+ * Always-visible navy scrollbar beside the rows, as in the design. Chrome
+ * ignores ::-webkit-scrollbar styles while scrollbar-width/-color are set, so
+ * reset them here; browsers without ::-webkit-scrollbar keep the standard
+ * thin navy scrollbar.
+ */
+.patient-list__items.scroll-list {
+  scrollbar-width: auto;
+  scrollbar-color: auto;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  .patient-list__items.scroll-list {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-scroll-thumb) var(--color-scroll-track);
+  }
+}
+
+/* Every row — real or decorative — shares the same height and alignment */
+.patient-list__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: clamp(10px, 1vw, 16px) clamp(16px, 1.5vw, 24px) clamp(10px, 1vw, 16px) var(--panel-padding);
+}
+
+.patient-list__item--active {
+  background: var(--color-accent-soft);
+}
+
+.patient-list__avatar {
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+}
+
+.patient-list__details {
+  flex: 1;
+  min-width: 0;
+}
+
+.patient-list__name {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+}
+
+/* XD: Body Secondary Info 14pt (Regular, #707070), ~22px below the name */
+.patient-list__meta {
+  margin-top: 4px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* Ellipsis icon, right-aligned on every row (visual only) */
+.patient-list__menu {
+  flex-shrink: 0;
+}
+
+/* Single-column mobile layout: cap the list height instead of stretching */
+@media (max-width: 720px) {
+  .patient-list__items {
+    max-height: 320px;
+  }
+}
