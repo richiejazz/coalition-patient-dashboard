@@ -23,13 +23,14 @@ JavaScript modules loaded from `file://`). Run it through Vite instead:
    cp .env.example .env.local
    ```
 
-4. Open `.env.local` and enter the Basic Auth **username** and **password**
+4. Open `.env.local` and set `COALITION_API_USERNAME` and
+   `COALITION_API_PASSWORD` to the Basic Auth **username** and **password**
    listed in the official assessment API documentation, under the "Get All
    Patients" request's Authorization section:
    <https://documenter.getpostman.com/view/11861104/2sA35G42ve>
 
-   `VITE_API_URL` is already filled in. `.env.local` is git-ignored and is not
-   included in the submission.
+   These are server-side variables, read only by the API proxy (see below).
+   `.env.local` is git-ignored and must never be committed.
 
 5. Start the development server:
 
@@ -43,19 +44,51 @@ JavaScript modules loaded from `file://`). Run it through Vite instead:
 To check the production build instead, run `npm run build` followed by
 `npm run preview`, and open the URL it prints.
 
-## About the API credentials
+## API security: server-side proxy
 
-The Basic Auth header is built at request time with `btoa()` from the
-environment values. No credentials or pre-encoded keys live in the source
-code. Note that Vite inlines `VITE_*` variables into the browser bundle, so
-the values are still visible to anyone using the built app. That is acceptable
-here because the credentials are published in the API documentation; a
-production app would route requests through a server-side proxy instead.
+The browser never talks to the Coalition Technologies API directly and never
+holds its credentials:
+
+```
+browser ──GET /api/patients──▶ api/patients.js ──Basic Auth──▶ Patient Data API
+         (no credentials)      (credentials from server env)
+```
+
+- `api/patients.js` is a Vercel serverless function. It reads
+  `COALITION_API_USERNAME` and `COALITION_API_PASSWORD` from the server
+  environment, builds the Basic Auth header on the server, and calls the API.
+- Locally, `vite.config.js` serves the same function at `/api/patients` for
+  `npm run dev` and `npm run preview`, reading the variables from `.env.local`.
+- The variables deliberately have no `VITE_` prefix: Vite only bundles
+  `VITE_*` variables into browser code, so these never reach the client.
+- Upstream error details are not forwarded to the browser.
 
 ## Data handling
 
-The API returns all patients in one response. `src/services/patientApi.js`
-passes Jessica Taylor's full record to the UI. To reproduce the sidebar in the
-design, the first 12 records are reduced to name, gender, age, and profile
-photo only — no diagnosis history, vitals, contact, or insurance data for any
-other patient reaches the UI.
+The API returns all patients in one response. The proxy filters it **on the
+server**, so the browser only receives:
+
+- Jessica Taylor's full record (profile, diagnosis history, vitals,
+  diagnostic list, lab results), and
+- name, gender, age, and profile photo for the first 12 patients, to reproduce
+  the sidebar in the design.
+
+No diagnosis history, vitals, contact, or insurance data for any other patient
+is sent to the browser.
+
+## Deploying to Vercel
+
+Import the repository at <https://vercel.com/new>. Vercel detects Vite
+(build command `npm run build`, output directory `dist`) and the `api/`
+function automatically. Add `COALITION_API_USERNAME` and
+`COALITION_API_PASSWORD` as environment variables in the Vercel project
+settings. Do not add any `VITE_`-prefixed credential variables.
+
+## Assessment submission vs. this repository
+
+The assessment instructions asked for the Basic Auth header to be encoded in
+the browser with `btoa()`, so the submitted assessment ZIP calls the API
+directly from the browser. This public repository is the deployment version:
+it moves authentication and data filtering into the server-side proxy above,
+so no credentials are bundled into the public site. The dashboard UI is
+otherwise the same.
