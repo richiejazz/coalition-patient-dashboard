@@ -1,0 +1,26 @@
+# Files the Vercel CLI must never upload. This file only affects Vercel
+# uploads; Git tracking is controlled separately by .gitignore.
+
+# Local environment files with real credentials (Vercel uses its own
+# project environment variables). The placeholder template is harmless.
+.env
+.env.*
+!.env.example
+
+# Assessment deliverable archive and design reference recordings
+*.zip
+design/
+
+# Generated output and dependencies (Vercel installs and builds itself)
+dist/
+node_modules/
+.vercel/
+
+# Git metadata, OS and editor files, logs
+.git/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+*.tmp
