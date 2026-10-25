@@ -38,7 +38,7 @@ JavaScript modules loaded from `file://`). Run it through Vite instead:
    ```
 
 6. Open the local URL that Vite prints in the terminal (for example
-   `http://localhost:5173/`; Vite picks the next free port if that one is busy).
+   `http://localhost:5174/`; Vite picks the next free port if that one is busy).
 
 To check the production build instead, run `npm run build` followed by
 `npm run preview`, and open the URL it prints.
